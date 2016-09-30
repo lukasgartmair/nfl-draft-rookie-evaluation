@@ -61,7 +61,7 @@ def reorder_data_drame(important,df):
 
 def get_best_metrics(stats):
 
-    positions = ['T','G', 'DT', 'DE', 'OLB', 'QB','WR', 'FB','RB', 'S','CB']
+    positions = ['T','G', 'DT', 'DE', 'OLB', 'QB','WR', 'FB','RB', 'S','CB','ILB']
     
     ## make subset of stats total
     position = ''

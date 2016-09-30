@@ -124,8 +124,28 @@ olb_prospects  = stats_total[(stats_total['Position_Group'] == (position)) ]
 #                               (stats_total['Strength']) > 2 &
 #                               (stats_total['Position_Specific'] > 30) &
 #                               (stats_total[position + '_Metric'] > 2) ]        
+
+# outside linebackers
+position = 'ILB'
+feature_list = []
+feature_list = [Attribute('Run_Defense',8),Attribute('Pass_Rush_Technique',4), 
+                Attribute('Man-to-Man_Defense',5),Attribute('Zone_Defense',10), 
+                Attribute('Bump-and-Run_Defense',5), Attribute('Pass_Rush_Strength',3),
+                Attribute('Play_Diagnosis',10), Attribute('Punishing_Hitter',0), 
+                Attribute('Endurance',5)]          
+                     
+pos = class_position_metric.Position_Metric(position,feature_list)
+stats_total[position + '_Metric'] = pos.calculate_metric(stats_total)
+ilb_prospects  = stats_total[(stats_total['Position_Group'] == (position)) ]
+#                             (stats_total['Explosion_Number'] > 30) &
+#                               (stats_total['Developed'] >= 20) &  
+#                               (stats_total['Dash'] < 4.9) &
+#                               (stats_total['Strength']) > 2 &
+#                               (stats_total['Position_Specific'] > 30) &
+#                               (stats_total[position + '_Metric'] > 2) ]     
+
                                
-olb_prospects = olb_prospects.sort_values(by=[position + '_Metric'],ascending=False)                                
+ilb_prospects = ilb_prospects.sort_values(by=[position + '_Metric'],ascending=False)                                
 
 # quarterbacks
 position = 'QB'
