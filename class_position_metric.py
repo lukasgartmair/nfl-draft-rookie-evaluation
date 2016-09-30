@@ -73,6 +73,7 @@ def get_best_metrics(stats):
         pos_prospects = pd.DataFrame()
         pos_prospects = stats[stats['Position_Group'] == (position)]
         
+        # only consider values above the quantile
         quantile_metric = pos_prospects[position + '_Metric'].quantile(q=0.8)
 
         avg = pos_prospects[position + '_Metric'].median()
@@ -80,7 +81,7 @@ def get_best_metrics(stats):
 
         # a better formula for this would be nice
         final_prospects['Position_Comparison'] =  ((pos_prospects[position + '_Metric'] - avg) / avg)
-        
+                
         frames = [final_draftboard, final_prospects]
         final_draftboard = pd.concat(frames)
         

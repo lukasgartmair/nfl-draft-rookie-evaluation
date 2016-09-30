@@ -13,7 +13,7 @@ def normalize_metrics(stats):
     metric_cols = [col for col in stats.columns if '_Metric' in col]
     
     for mc in metric_cols:
-        stats[mc] = stats[mc] / stats[mc].max()
+        stats[mc] = stats[mc] / stats[mc].sum()
         
     return stats
 
